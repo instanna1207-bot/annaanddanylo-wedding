@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Запрошення</title>
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+.venue-name {
+  font-family: 'Playfair Display', serif; /* новий шрифт */
+  font-weight: 700; /* можна 400, 700, 900 */
+  font-size: 45px;  /* розмір можна підкоригувати */
+}
+
+/* тут твій CSS */
+
+#timer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: baseline; /* вирівнювання цифр і слів по одній лінії */
+}
+
+.timer-number {
+  font-family: 'Playfair Display', serif; /* шрифт цифр */
+  font-weight: 300;    /* тонкі цифри */
+  font-size: 65px;     /* великий розмір цифр */
+}
+
+.timer-label {
+  font-family: 'Playfair Display', serif; /* шрифт підписів */
+  font-weight: 700;    /* жирніші слова */
+  font-size: 30px;     /* менший розмір для слів */
+}
+
+</style>
+</head>
+
+<style>
+* {box-sizing:border-box; margin:0; padding:0;}
+
+body {
+  font-family: 'Parisienne', cursive;
+  background: url('photo_1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #000;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* Підложка для тексту */
+.bg-section {
+  background: rgba(255,255,255,0.8);
+  padding: 20px;
+  border-radius: 15px;
+  display: inline-block;
+  max-width: 90%;
+  margin: 20px auto;
+}
+
+/* Імена */
+.names {
+  position: relative;
+  margin-top: 40px;
+  height: 120px;
+}
+
+/* Секції */
+.section {
+  margin: 60px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 1.5s forwards;
+}
+.section:nth-of-type(1){animation-delay:0.5s}
+.section:nth-of-type(2){animation-delay:1s}
+.section:nth-of-type(3){animation-delay:1.5s}
+.section:nth-of-type(4){animation-delay:2s}
+.section:nth-of-type(5){animation-delay:2.5s}
+.section:nth-of-type(6){animation-delay:3s}
+
+@keyframes fadeUp { to {opacity:1; transform:translateY(0);} }
+
+/* Кнопки */
+.btn {
+  padding:12px 25px;
+  background: rgba(108,143,122,0.9);
+  color:black;
+  border:none;
+  border-radius:20px;
+  cursor:pointer;
+  font-size: 20px;
+}
+
+/* Форми */
+input, textarea {
+  display:block;
+  margin:10px auto;
+  padding:12px;
+  width:90%;
+  max-width:400px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:18px;
+}
+
+/* Таймер */
+#timer {
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 55px;
+  color: black;
+}
+
+/* Адаптивність */
+@media(max-width:600px){
+  .names {flex-direction: column; gap:20px; font-size:36px;}
+  .btn {width:80%;}
+}
+
+/* символ & */
+.amp {
+  font-size: 50px;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+  animation-delay: 1s;
+}
+
+/* поява */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.name {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+
+/* Анна */
+.name.left {
+  left: 49%;
+  transform: translateX(-125%);
+  font-size: 40px; /* збільшили шрифт */
+  animation: moveLeftCenter 2s forwards;
+}
+
+/* Данило */
+.name.right {
+  left: 50%;
+  transform: translateX(25%);
+  font-size: 40px; /* збільшили шрифт */
+  animation: moveRightCenter 2s forwards;
+}
+
+/* & */
+.amp {
+  position: absolute;
+  left: 50%;
+  top: 0; /* вирівнювання по вертикалі з іменами */
+  transform: translateX(-50%);
+  font-size: 80px; /* трохи більший шрифт */
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+  animation-delay: 1s;
+}
+
+/* анімації */
+@keyframes moveLeftCenter {
+  from {
+    transform: translateX(-300%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(-125%);
+    opacity: 1;
+  }
+}
+
+@keyframes moveRightCenter {
+  from {
+    transform: translateX(300%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(25%);
+    opacity: 1;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Музичний плеєр під фото -->
+  <div class="music-player" style="margin-top:20px; margin-bottom:40px;">          <audio id="music" controls autoplay loop> 
+  <source src="music.mp3" type="audio/mpeg"> 
+Ваш браузер не підтримує аудіо. 
+  </audio> </div>
+
+ <!-- Імена --> 
+  <div class="names"> 
+  <div class="name left bg-section">Анна</div> 
+  <div class="amp">&</div>
+  <div class="name right bg-section">Данило</div> 
+</div>
+
+<!-- Дата -->
+<div class="section">
+  <div class="bg-section">
+    <h2>22/07/2026</h2>
+    <p>З великою радістю запрошуємо вас розділити з нами цей особливий день ✨</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="bg-section">
+  <h2 class="venue-name">GRILL PARK</h2>
+    <p>вул. Маловського, 1, м. Одеса</p>
+    <a href="https://maps.app.goo.gl/K6KpsBqdGNWge9bC6" target="_blank">
+      <button class="btn">Відкрити карту</button>
+    </a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="bg-section">
+    <h2>Програма</h2>
+    <p>12:00 — Збір гостей</p>
+    <p>15:00 — Розпис в Дії</p>
+    <p>15:30 — Святкування</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="bg-section">
+    <h2>Обов'язково мати при собі</h2>
+    <p>Гарний настрій 😊<br>Посмішку 🤍<br>Любов до танців 💃</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="bg-section">
+    <h2>Анкета</h2>
+    <form action="https://formspree.io/f/mzdjwzlp" method="POST">
+      <input type="text" name="name" placeholder="Ваше ім'я">
+      <textarea name="drinks" placeholder="Які напої ви будете пити?"></textarea>
+      <button class="btn">Надіслати</button>
+    </form>
+  </div>
+</div>
+
+<div class="section">
+  <div class="bg-section">
+    <h2>До події залишилось:</h2>
+    <p id="timer"></p>
+  </div>
+</div>
+
+<script>
+// Таймер живий
+const targetDate = new Date("July 22, 2026 15:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if(diff < 0){
+    document.getElementById("timer").innerText = "Свято вже розпочалося!";
+    return;
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").innerHTML =
+  `<span class="timer-number">${days}</span> <span class="timer-label">днів</span> ` +
+  `<span class="timer-number">${hours}</span> <span class="timer-label">год</span> ` +
+  `<span class="timer-number">${minutes}</span> <span class="timer-label">хв</span> ` +
+  `<span class="timer-number">${seconds}</span> <span class="timer-label">с</span>`;
+
+}, 1000);
+</script>
+
+</body>
+</html>
